@@ -1,0 +1,241 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MBV.CMS.HX.Api</name>
+    </assembly>
+    <members>
+        <member name="T:MBV.CMS.HX.Api.Automapper.DomainViewModelMappingProfile">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MBV.CMS.HX.Api.Automapper.DomainViewModelMappingProfile.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:MBV.CMS.HX.Api.Clients.HttpClientServiceExtension">
+            <summary>
+            HttpClientService Extension for Service Injection
+            </summary>
+        </member>
+        <member name="M:MBV.CMS.HX.Api.Clients.HttpClientServiceExtension.AddHttpClientConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Main Http Configuration Injection
+            </summary>
+            <param name="services"></param>
+            <param name="config"></param>
+        </member>
+        <member name="T:MBV.CMS.HX.Api.Clients.PollyPolicyBuilder">
+            <summary>
+            Main Polly Policy Builder
+            </summary>
+        </member>
+        <member name="M:MBV.CMS.HX.Api.Clients.PollyPolicyBuilder.BuildRetryPolicy">
+            <summary>
+            Retry Policy for general HttpClient usage
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:MBV.CMS.HX.Api.Controllers.MBCarsController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MBV.CMS.HX.Api.Controllers.MBCarsController.#ctor(Microsoft.Extensions.Logging.ILogger{MBV.CMS.HX.Api.Controllers.MBCarsController},AutoMapper.IMapper,MBV.CMS.HX.Service.Interface.IMBCarService)">
+            <summary>
+            
+            </summary>
+            <param name="logger"></param>
+            <param name="mapper"></param>
+            <param name="mBCarService"></param>
+        </member>
+        <member name="M:MBV.CMS.HX.Api.Controllers.MBCarsController.GetMBCarAsync(System.Int64)">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MBV.CMS.HX.Api.Controllers.MBCarsController.CreateMBCarAsync(MBV.CMS.HX.Api.ViewModels.MBCarCreateRequest)">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:MBV.CMS.HX.Api.Filters.ExceptionsAttribute">
+            <summary>
+            ExceptionsAttribute
+            </summary>
+        </member>
+        <member name="M:MBV.CMS.HX.Api.Filters.ExceptionsAttribute.#ctor(Correlate.ICorrelationContextAccessor)">
+            <summary>
+            ExceptionsAttribute
+            </summary>
+            <param name="correlation"></param>
+        </member>
+        <member name="M:MBV.CMS.HX.Api.Filters.ExceptionsAttribute.OnException(Microsoft.AspNetCore.Mvc.Filters.ExceptionContext)">
+            <summary>
+            OnException
+            </summary>
+            <param name="context"></param>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="T:MBV.CMS.HX.Api.Filters.ModelStateValidateAttribute">
+            <summary>
+            ModelStateValidateAttribute
+            </summary>
+        </member>
+        <member name="M:MBV.CMS.HX.Api.Filters.ModelStateValidateAttribute.#ctor(Correlate.ICorrelationContextAccessor)">
+            <summary>
+            ModelStateValidateAttribute
+            </summary>
+        </member>
+        <member name="M:MBV.CMS.HX.Api.Filters.ModelStateValidateAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            OnActionExecuting
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:MBV.CMS.HX.Api.Middleware.RequestResponseLoggingMiddleware">
+            <summary>
+            RequestResponseLoggingMiddleware
+            </summary>
+        </member>
+        <member name="M:MBV.CMS.HX.Api.Middleware.RequestResponseLoggingMiddleware.#ctor(Microsoft.Extensions.Logging.ILoggerFactory)">
+            <summary>
+            RequestResponseLoggingMiddleware
+            </summary>
+            <param name="loggerFactory"></param>
+        </member>
+        <member name="M:MBV.CMS.HX.Api.Middleware.RequestResponseLoggingMiddleware.InvokeAsync(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate)">
+            <summary>
+            InvokeAsync
+            </summary>
+            <param name="context"></param>
+            <param name="next"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MBV.CMS.HX.Api.Middleware.RequestResponseLoggingMiddlewareExtensions">
+            <summary>
+            RequestResponseLoggingMiddlewareExtensions
+            </summary>
+        </member>
+        <member name="M:MBV.CMS.HX.Api.Middleware.RequestResponseLoggingMiddlewareExtensions.UseRequestResponseLogging(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            UseRequestResponseLogging
+            </summary>
+            <param name="builder"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MBV.CMS.HX.Api.Models.Error">
+            <summary>
+            Error
+            </summary>
+        </member>
+        <member name="P:MBV.CMS.HX.Api.Models.Error.Code">
+            <summary>
+            Code
+            </summary>
+        </member>
+        <member name="P:MBV.CMS.HX.Api.Models.Error.Title">
+            <summary>
+            Title
+            </summary>
+        </member>
+        <member name="P:MBV.CMS.HX.Api.Models.Error.Detail">
+            <summary>
+            Detail
+            </summary>
+        </member>
+        <member name="T:MBV.CMS.HX.Api.Models.ErrorDetailModel">
+            <summary>
+            ErrorDetailModel
+            </summary>
+        </member>
+        <member name="M:MBV.CMS.HX.Api.Models.ErrorDetailModel.#ctor">
+            <summary>
+            ErrorDetailModel constructor
+            </summary>
+        </member>
+        <member name="P:MBV.CMS.HX.Api.Models.ErrorDetailModel.EventId">
+            <summary>
+            Http error status description
+            </summary>
+        </member>
+        <member name="P:MBV.CMS.HX.Api.Models.ErrorDetailModel.Detail">
+            <summary>
+            Error detail
+            </summary>
+        </member>
+        <member name="P:MBV.CMS.HX.Api.Models.ErrorDetailModel.CorrelationId">
+            <summary>
+            Correlation Id
+            </summary>
+        </member>
+        <member name="P:MBV.CMS.HX.Api.Models.ErrorDetailModel.Errors">
+            <summary>
+            Errors list
+            </summary>
+        </member>
+        <member name="T:MBV.CMS.HX.Api.Swagger.SwaggerGenSettings">
+            <summary>
+            SwaggerDefaultValues
+            </summary>
+        </member>
+        <member name="M:MBV.CMS.HX.Api.Swagger.SwaggerGenSettings.AddSwaggerGenForService(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            AddSwaggerGen
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="T:MBV.CMS.HX.Api.Swagger.SwaggerOperationFilter">
+            <summary>
+            SwaggerOperationFilter
+            </summary>
+        </member>
+        <member name="M:MBV.CMS.HX.Api.Swagger.SwaggerOperationFilter.Apply(Microsoft.OpenApi.Models.OpenApiOperation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
+            <summary>
+            Applies the filter to the specified operation using the given context.
+            </summary>
+            <param name="operation">The operation to apply the filter to.</param>
+            <param name="context">The current operation filter context.</param>
+        </member>
+        <member name="T:MBV.CMS.HX.Api.Swagger.SwaggerUiSettings">
+            <summary>
+            SwaggerUiSettings Class
+            </summary>
+        </member>
+        <member name="M:MBV.CMS.HX.Api.Swagger.SwaggerUiSettings.SwaggerOptionUi(Microsoft.AspNetCore.Mvc.ApiExplorer.IApiVersionDescriptionProvider,Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIOptions)">
+            <summary>
+            Configuracion de la UI de swagger
+            </summary>
+            <param name="provider"></param>
+            <param name="options"></param>
+        </member>
+        <member name="T:MBV.CMS.HX.Api.ViewModels.MBCarCreateRequest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MBV.CMS.HX.Api.ViewModels.MBCarCreateRequest.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:MBV.CMS.HX.Api.ViewModels.MBCarResponse">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MBV.CMS.HX.Api.ViewModels.MBCarResponse.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MBV.CMS.HX.Api.ViewModels.MBCarResponse.Name">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>
