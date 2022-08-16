@@ -9,7 +9,7 @@ namespace MBV.CMS.HX.DataAccess.NHibernate.Extensions
 {
     public static class NHibernateExtensions
     {
-        public static IServiceCollection AddNHibernate(this IServiceCollection services, string connectionString, bool createSchema = false)
+        public static IServiceCollection AddNHibernate(this IServiceCollection services, string connectionString)
         {
             var fluentConfig = Fluently.Configure()
                 .Mappings(mapper =>
@@ -29,7 +29,7 @@ namespace MBV.CMS.HX.DataAccess.NHibernate.Extensions
             services.AddSingleton(sessionFactory);
             services.AddScoped(session => sessionFactory.OpenSession());
 
-            //if (createSchema)
+            //Uncomment to create DB schema from entities
             //    new SchemaExport(fluentConfig).Execute(useStdOut: false, execute: true, justDrop: false, connection: sessionFactory.OpenSession().Connection, exportOutput: Console.Out);
 
             return services;

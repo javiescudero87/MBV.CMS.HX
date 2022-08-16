@@ -64,10 +64,4 @@
     </Content>
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="Sa.Demo.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>

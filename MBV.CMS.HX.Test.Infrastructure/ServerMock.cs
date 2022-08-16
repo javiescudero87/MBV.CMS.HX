@@ -55,22 +55,20 @@ namespace MBV.CMS.HX.Test.Infrastructure
                         conf.AddConfiguration(Configuration);
                     });
 
-                    //builder.ConfigureTestServices(services =>
-                    //{
-                    //    var sessionDescriptor = services.SingleOrDefault(d =>
-                    //        d.ServiceType == typeof(ISession));
+                    builder.ConfigureTestServices(services =>
+                    {
+                        //Aquí podríamos definir una alternativa de DB como in memory DB, no sé si existe para HBN
+                        //builder.ConfigureTestServices(services =>
+                        //{
+                        //    var sessionFactoryDescriptor = services.SingleOrDefault(d =>
+                        //        d.ServiceType == typeof(ISessionFactory));
 
-                    //    if (sessionDescriptor != null)
-                    //        services.Remove(sessionDescriptor);
+                        //    if (sessionFactoryDescriptor != null)
+                        //        services.Remove(sessionFactoryDescriptor);
+                        //    services.AddNHibernate(con);
 
-                    //    var sessionFactoryDescriptor = services.SingleOrDefault(d =>
-                    //        d.ServiceType == typeof(ISessionFactory));
-
-                    //    if (sessionFactoryDescriptor != null)
-                    //        services.Remove(sessionFactoryDescriptor);
-                    //    services.AddNHibernate(con, true);
-
-                    //});
+                        //});
+                    });
                 });
 
             FillConfiguration();
