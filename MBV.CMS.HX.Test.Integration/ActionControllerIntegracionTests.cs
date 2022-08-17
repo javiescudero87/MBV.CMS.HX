@@ -50,6 +50,7 @@ namespace MBV.CMS.HX.Test.Integration
             Assert.Null(actionResponse.ToolId);
             Assert.Equal(expectedBrand, actionResponse.Brand);
             Assert.Equal(expectedDescription, actionResponse.Description);
+            Assert.NotNull(actionResponse.Status);
         }
 
         [Fact]

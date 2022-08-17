@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using MBV.CMS.HX.Api.ViewModels;
+using MBV.CMS.HX.Common.Extensions;
+using MBV.CMS.HX.Domain;
 
 namespace MBV.CMS.HX.Api.Automapper
 {
@@ -13,13 +15,16 @@ namespace MBV.CMS.HX.Api.Automapper
         /// </summary>
         public DomainViewModelMappingProfile()
         {
-            //Your maps
-            CreateMap<Domain.MBCar, MBCarResponse>();
-            CreateMap<MBCarCreateRequest, Domain.MBCar>();
+            //Request            
+            CreateMap<MBCarCreateRequest, MBCar>();
+            CreateMap<ActionCreateRequest, CreateToolAction>();
 
-
-            CreateMap<ActionCreateRequest, Domain.CreateToolAction>();
-            CreateMap<Domain.CreateToolAction, ActionResponse>();
+            //Response
+            CreateMap<MBCar, MBCarResponse>();
+            CreateMap<CreateToolAction, ActionResponse>();
+            CreateMap<ActionStatusEnums, StatusResponse>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => (long)src))
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.GetDescription()));
         }
     }
 }

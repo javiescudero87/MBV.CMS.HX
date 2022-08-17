@@ -14,6 +14,7 @@ namespace MBV.CMS.HX.Service
 
         public async Task<CreateToolAction> CreateCreateToolActionAsync(CreateToolAction domainCreateActionTool)
         {
+            domainCreateActionTool.Status = ActionStatusEnums.Planificada;
             var domainCreateActionToolAdded =  await _createActionToolRepository.SaveAsync(domainCreateActionTool);
             return domainCreateActionToolAdded;
         }

@@ -54,8 +54,7 @@ namespace MBV.CMS.HX.Api.Controllers
 
             var domainAction = _mapper.Map<Domain.CreateToolAction>(actionCreateRequest);
             var domainActionAdded = await _actionService.CreateCreateToolActionAsync(domainAction);
-
-            return Created($"{RouteRoot}/{domainActionAdded.Id}", _mapper.Map<Domain.CreateToolAction>(domainActionAdded));
+            return Created($"{RouteRoot}/{domainActionAdded.Id}", _mapper.Map<ActionResponse>(domainActionAdded));
         }
 
         /// <summary>

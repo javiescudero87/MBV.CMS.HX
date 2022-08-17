@@ -15,5 +15,9 @@ namespace MBV.CMS.HX.Api.ViewModels
 
         [JsonProperty("description")]
         public string Description { get; internal set; }
+        [JsonProperty("location")]
+        public string Location { get; set; }
+        [JsonProperty("status")]
+        public StatusResponse Status { get; set; }
     }
 }
