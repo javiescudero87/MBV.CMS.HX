@@ -1,4 +1,5 @@
 ﻿using MBV.CMS.HX.Api.ViewModels;
+using MBV.CMS.HX.Domain;
 using MBV.CMS.HX.Test.Infrastructure;
 using Newtonsoft.Json;
 using System;
@@ -49,6 +50,41 @@ namespace MBV.CMS.HX.Test.Integration
             Assert.Null(actionResponse.ToolId);
             Assert.Equal(expectedBrand, actionResponse.Brand);
             Assert.Equal(expectedDescription, actionResponse.Description);
+        }
+
+        [Fact]
+        public async Task ExecuteAction_ShouldReturnOk()
+        {
+            //ARRANGE
+            var toolId = "TQ001";
+            var location = "Depósito de Herramientas";
+            var id = AddCreateToolActionDb("Torque", "Bosch");
+            var server = _server.HttpServer.TestServer;
+            var client = server?.CreateClient();
+
+            //ACT
+            dynamic request = new
+            {
+                tool_id = toolId,
+                location = location,
+            };
+            var resource = $"{id}/execute";
+            StringContent httpContent = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
+            var response = await client.PostAsync($"{BaseAddress}/{resource}", httpContent);
+
+            //ASSERT
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        }
+
+        private long AddCreateToolActionDb(string description, string brand)
+        {
+            return (long)_server.HttpServer.Session.Save(
+                new CreateToolAction { 
+                    Description = description,
+                    Brand = brand,
+                    Status = ActionStatusEnums.Planificada
+                }
+                );
         }
     }
 }

@@ -58,7 +58,20 @@ namespace MBV.CMS.HX.Api.Controllers
             return Created($"{RouteRoot}/{domainActionAdded.Id}", _mapper.Map<Domain.CreateToolAction>(domainActionAdded));
         }
 
-
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost("{id}/execute")]
+        [SwaggerOperation(Summary = "Executes an action tool.", Tags = new[] { "Actions" })]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorDetailModel), StatusCodes.Status400BadRequest)]
+        [Produces(MediaTypeNames.Application.Json, "application/problem+json")]
+        public async Task<IActionResult> ExecuteActionAsync([FromRoute] long id, [FromBody] ExecuteActionRequest executeActionRequest)
+        {
+            _logger.LogDebug("Entering to Actions controller -> ExecuteActionAsync");
+            await _actionService.ExecuteAsync(id, executeActionRequest.ToolId, executeActionRequest.Location);
+            return Ok();
+        }
     }
 }

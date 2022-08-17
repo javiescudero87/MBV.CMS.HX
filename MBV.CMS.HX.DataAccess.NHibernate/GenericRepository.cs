@@ -71,7 +71,7 @@ namespace MBV.CMS.HX.DataAccess.NHibernate
             BeginTransaction();
             try
             {
-                await _session.SaveAsync(domainEntity);
+                await _session.SaveOrUpdateAsync(domainEntity);
                 await CommitAsync();
                 return domainEntity;
             }

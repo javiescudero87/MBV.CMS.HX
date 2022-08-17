@@ -17,5 +17,14 @@ namespace MBV.CMS.HX.Service
             var domainCreateActionToolAdded =  await _createActionToolRepository.SaveAsync(domainCreateActionTool);
             return domainCreateActionToolAdded;
         }
+
+        public async Task ExecuteAsync(long id, string toolId, string location)
+        {
+            var action = await _createActionToolRepository.FindAsync(id);
+            action.Location = location;
+            action.ToolId = toolId;
+            action.Status = ActionStatusEnums.Ejecutada;
+            await _createActionToolRepository.SaveAsync(action);
+        }
     }
 }

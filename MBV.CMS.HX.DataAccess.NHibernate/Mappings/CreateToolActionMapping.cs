@@ -10,6 +10,9 @@ namespace MBV.CMS.HX.DataAccess.NHibernate.Mappings
             Id(x => x.Id).GeneratedBy.Identity();
             Map(x => x.Brand);
             Map(x => x.Description);
+            Map(x => x.ToolId);
+            Map(x => x.Location);
+            Map(x => x.Status);
         }
     }
 }
