@@ -77,8 +77,8 @@ namespace MBV.CMS.HX.Test.Unit.Services
             };
 
             //ACT
-            _createToolActionRepositoryMock.Setup(r => r.FindAsync(It.IsAny<long>())).ReturnsAsync(expectedActionAdded);
-            _createToolActionRepositoryMock.Setup(r => r.SaveAsync(It.IsAny<Domain.CreateToolAction>()));
+            _createToolActionRepositoryMock.Setup(r => r.FindAsync(id)).ReturnsAsync(expectedActionAdded);
+            _createToolActionRepositoryMock.Setup(r => r.SaveAsync(expectedActionAdded));
             await ExecuteSut().ExecuteAsync(id, toolId, location);
 
             //ASSERT
