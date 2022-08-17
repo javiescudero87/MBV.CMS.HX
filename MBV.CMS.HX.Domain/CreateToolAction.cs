@@ -8,5 +8,6 @@
         public virtual string ToolId { get; set; }
         public virtual string Location { get; set; }
         public virtual ActionStatusEnums Status { get; set; }
+        public string Evidence { get; set; }
     }
 }

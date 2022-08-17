@@ -12,6 +12,7 @@ namespace MBV.CMS.HX.DataAccess.NHibernate.Mappings
             Map(x => x.Description);
             Map(x => x.ToolId);
             Map(x => x.Location);
+            Map(x => x.Evidence);
             Map(x => x.Status);
         }
     }

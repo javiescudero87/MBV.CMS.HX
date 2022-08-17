@@ -73,5 +73,22 @@ namespace MBV.CMS.HX.Api.Controllers
             await _actionService.ExecuteAsync(id, executeActionRequest.ToolId, executeActionRequest.Location);
             return Ok();
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost("{id}/")]
+        [SwaggerOperation(Summary = "Verifies and action tool.", Tags = new[] { "Actions" })]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorDetailModel), StatusCodes.Status400BadRequest)]
+        [Produces(MediaTypeNames.Application.Json, "application/problem+json")]
+        public async Task<IActionResult> VerifyActionAsync([FromRoute] long id, [FromBody] VerifyActionRequest verifyActionRequest)
+        {
+            _logger.LogDebug("Entering to Actions controller -> VerifyActionAsync");
+            await _actionService.VerifyAsync(id, verifyActionRequest.Evidence);
+            return Ok();
+        }
+
     }
 }

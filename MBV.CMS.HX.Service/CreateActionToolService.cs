@@ -26,5 +26,13 @@ namespace MBV.CMS.HX.Service
             action.Status = ActionStatusEnums.Ejecutada;
             await _createActionToolRepository.SaveAsync(action);
         }
+
+        public async Task VerifyAsync(long id, string evidence)
+        {
+            var action = await _createActionToolRepository.FindAsync(id);
+            action.Evidence = evidence;
+            action.Status = ActionStatusEnums.Realizada;
+            await _createActionToolRepository.SaveAsync(action);
+        }
     }
 }
