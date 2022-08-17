@@ -16,6 +16,10 @@ namespace MBV.CMS.HX.Api.Automapper
             //Your maps
             CreateMap<Domain.MBCar, MBCarResponse>();
             CreateMap<MBCarCreateRequest, Domain.MBCar>();
+
+
+            CreateMap<ActionCreateRequest, Domain.CreateToolAction>();
+            CreateMap<Domain.CreateToolAction, ActionResponse>();
         }
     }
 }

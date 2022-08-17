@@ -155,6 +155,8 @@ builder.Services.Configure<OpenApiInfoConfigurationOptions>(builder.Configuratio
 
 builder.Services.AddTransient<IMBCarRepository, MBCarRepository>();
 builder.Services.AddTransient<IMBCarService, MBCarService>();
+builder.Services.AddTransient<ICreateActionToolRepository, CreateActionToolRepository>();
+builder.Services.AddTransient<ICreateActionToolService, CreateActionToolService>();
 
 #endregion
 
