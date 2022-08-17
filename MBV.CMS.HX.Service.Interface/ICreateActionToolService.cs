@@ -6,5 +6,6 @@ namespace MBV.CMS.HX.Service.Interface
     {
         Task<CreateToolAction> CreateCreateToolActionAsync(CreateToolAction domainMBCar);
         Task ExecuteAsync(long id, string toolId, string location);
+        Task VerifyAsync(long id, string evidence);
     }
 }

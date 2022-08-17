@@ -7,8 +7,9 @@ namespace MBV.CMS.HX.Domain
 
         [Description("Planificada")]
         Planificada = 1,
-
         [Description("Ejecutada")]
-        Ejecutada
+        Ejecutada = 2,
+        [Description("Realizada")]
+        Realizada = 3
     }
 }

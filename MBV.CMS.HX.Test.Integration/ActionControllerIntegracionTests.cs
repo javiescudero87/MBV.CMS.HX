@@ -51,6 +51,7 @@ namespace MBV.CMS.HX.Test.Integration
             Assert.Equal(expectedBrand, actionResponse.Brand);
             Assert.Equal(expectedDescription, actionResponse.Description);
             Assert.NotNull(actionResponse.Status);
+            Assert.Equal(actionResponse.Status.Id, (long)ActionStatusEnums.Planificada);
         }
 
         [Fact]
