@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MBV.CMS.HX.Common\MBV.CMS.HX.Common.csproj" />
     <ProjectReference Include="..\MBV.CMS.HX.DataAccess.Interface\MBV.CMS.HX.DataAccess.Interface.csproj" />
     <ProjectReference Include="..\MBV.CMS.HX.Domain\MBV.CMS.HX.Domain.csproj" />
     <ProjectReference Include="..\MBV.CMS.HX.Service.Interface\MBV.CMS.HX.Service.Interface.csproj" />
