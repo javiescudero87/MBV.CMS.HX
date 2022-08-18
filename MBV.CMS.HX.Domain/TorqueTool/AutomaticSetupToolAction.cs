@@ -7,16 +7,18 @@ using System.Threading.Tasks;
 
 namespace MBV.CMS.HX.Domain.TorqueTool
 {
-    public class AutomaticSetupToolAction : AutomaticAction<TorqueTool, int, string>
+    public class AutomaticSetupToolAction : AutomaticVerificationAction<TorqueTool, VoidType, string>
     {
-        public string Configuration { get; set; }
+        public virtual string Configuration { get; set; }
+
+        public override string Sumary => $"Setup Torque Tool {Subject} with new Configuration";
 
         public AutomaticSetupToolAction(TorqueTool subject,string configuration) : base(subject)
         {
             Configuration = configuration;
         }
 
-        public override AutomaticActionExecuteResult<int, string> InternalExecute()
+        public override AutomaticActionExecuteResult<VoidType, string> InternalExecute(VoidType arguments)
         {
             //Aca llamo la api con la configuración, algo asi como:
             //  API.SetConifguration(Subject.ToolId, Configuration);
@@ -25,8 +27,8 @@ namespace MBV.CMS.HX.Domain.TorqueTool
             //  Evidence = state;
 
             var evidence = "API RESULT";
-            return new AutomaticActionExecuteResult<int, string>(
-                0,
+            return new AutomaticActionExecuteResult<VoidType, string>(
+                new VoidType(),
                 new[] { new TorqueToolUpdateConfiguration(Configuration) },
                 evidence
                 );

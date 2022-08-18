@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace MBV.CMS.HX.Domain.TorqueTool
 {
-    public class ManualSetupToolAction : ManualAction<TorqueTool, int, string>
+    public class ManualSetupToolAction : ManualVerificationAction<TorqueTool, int, string>
     {
         public string Configuration { get; protected set; }
+        public override string Sumary => $"Setup Torque Tool {Subject} with new Configuration";
 
         public ManualSetupToolAction(TorqueTool? subject, string configuration) : base(subject)
         {

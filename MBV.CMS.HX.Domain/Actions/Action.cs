@@ -7,24 +7,39 @@ using System.Threading.Tasks;
 
 namespace MBV.CMS.HX.Domain.Actions
 {
-    public abstract class Action<T> : IAction where T : IElement
+    public abstract class Action<S, A, E> : IAction where S : IElement
     {
-        #region Properties
+        #region IAction Properties
 
-        public IElement? Subject { get; protected set; }
+        public virtual IElement? Subject { get; protected set; }
 
-        public object? Data { get; set; }
+        public virtual object? ExecuteArguments { get; set; }
 
-        public object? Evidence { get; set; }
-        public ActionStatusValues Status { get; protected set; }
+        public virtual object? Evidence { get; set; }
+        public virtual ActionStatusValues Status { get; protected set; }
+
+        public virtual Type ExecuteArgumentsType => typeof(A);
+        public virtual Type EvidenceType => typeof(E);
 
         #endregion
 
-        public Action(T? subject)
+        #region Typed Properties
+        public virtual S? TypedSubject => (S?)Subject; 
+        public virtual A? TypedExecuteArguments => (A?)ExecuteArguments; 
+        public virtual E? TypedEvidence => (E?)Evidence;
+
+        public abstract string Sumary { get; }
+        #endregion
+
+        public abstract void Execute(object arguments);
+        public abstract void Verify(object evidence);
+        public abstract bool HasAutomaticVerification { get; }
+
+        public Action(S? subject)
         {
             Subject = subject;
             Status = ActionStatusValues.Pending;
-            Data = null;
+            ExecuteArguments = null;
             Evidence = null;
         }
     }

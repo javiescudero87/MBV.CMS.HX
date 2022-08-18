@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace MBV.CMS.HX.Domain.Actions
 {
-    public interface ISemiautomaticAction : IAction
+    public class VoidType
     {
-        void Execute(object data);
-        void Verify();
     }
 }

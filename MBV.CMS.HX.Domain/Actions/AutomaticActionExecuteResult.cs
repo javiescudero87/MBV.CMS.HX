@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace MBV.CMS.HX.Domain.Actions
 {
-    public class AutomaticActionExecuteResult<D, E>
+    public class AutomaticActionExecuteResult<A, E>
     {
-        public D Data { get; set; }
+        public A ExecuteArguments { get; set; }
         public object[] Changes { get; set; }
         public E Evidence { get; set; }
 
-        public AutomaticActionExecuteResult(D data, object[] changes, E evidence)
+        public AutomaticActionExecuteResult(A executeArguments, object[] changes, E evidence)
         {
-            Data = data;
+            ExecuteArguments = executeArguments;
             Changes = changes;
             Evidence = evidence;
         }

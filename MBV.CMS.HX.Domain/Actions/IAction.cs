@@ -10,9 +10,16 @@ namespace MBV.CMS.HX.Domain.Actions
     public interface IAction
     {
         IElement Subject { get; }
-        object Data { get; set; }
+        string Sumary { get; }
+        object ExecuteArguments { get; set; }
         object Evidence { get; set; }
-
         ActionStatusValues Status { get; }
+
+        Type ExecuteArgumentsType {get;}
+        Type EvidenceType { get; }
+
+        bool HasAutomaticVerification { get; }
+        void Execute(object arguments);
+        void Verify(object evidence);
     }
 }
