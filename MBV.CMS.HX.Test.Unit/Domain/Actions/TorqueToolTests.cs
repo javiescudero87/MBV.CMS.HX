@@ -23,15 +23,14 @@ namespace MBV.CMS.HX.Test.Unit.Domain.Actions
             var expectedBrand = "Bosch";
 
             //Act
-            var action = new CreateToolAction(expectedBrand);
+            var action = new CreateToolAction(new CreateToolActionConstructorArguments(expectedBrand));
 
             //Assert
-            Assert.Equal(expectedBrand, action.Brand);
+            Assert.Equal(expectedBrand, action.TypeConstructorArguments.Brand);
             Assert.Null(action.Subject);
             Assert.Null(action.ExecuteArguments);
             Assert.Null(action.Evidence);
             Assert.Equal(ActionStatusValues.Pending, action.Status);
-
         }
 
         [Fact]
@@ -41,13 +40,13 @@ namespace MBV.CMS.HX.Test.Unit.Domain.Actions
             var brand = "Bosch";
             var expectedToolId = "0001";
             var expectedLocation = "Available Tools Inventory";
-            var action = new CreateToolAction(brand);
+            var action = new CreateToolAction(new CreateToolActionConstructorArguments(brand));
 
             //Act
             action.Execute(new CreateToolActionExecuteArguments(expectedToolId, expectedLocation));
 
             //Assert
-            Assert.Equal(brand, action.Brand);
+            Assert.Equal(brand, action.TypeConstructorArguments.Brand);
             Assert.IsType<TorqueTool>(action.Subject);
             Assert.Equal(expectedToolId, action.TypedExecuteArguments.ToolId);
             Assert.Equal(expectedLocation, action.TypedExecuteArguments.Location);

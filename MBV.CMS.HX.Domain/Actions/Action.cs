@@ -7,23 +7,26 @@ using System.Threading.Tasks;
 
 namespace MBV.CMS.HX.Domain.Actions
 {
-    public abstract class Action<S, A, E> : IAction where S : IElement
+    public abstract class Action<S, C, A, E> : IAction where S : IElement
     {
         #region IAction Properties
 
         public virtual IElement? Subject { get; protected set; }
 
+        public virtual object ConstructorArguments { get; set; }
         public virtual object? ExecuteArguments { get; set; }
 
         public virtual object? Evidence { get; set; }
         public virtual ActionStatusValues Status { get; protected set; }
 
+        public virtual Type ConstructorArgumentsType => typeof(C);
         public virtual Type ExecuteArgumentsType => typeof(A);
         public virtual Type EvidenceType => typeof(E);
 
         #endregion
 
         #region Typed Properties
+        public virtual C TypeConstructorArguments => (C)ConstructorArguments;
         public virtual S? TypedSubject => (S?)Subject; 
         public virtual A? TypedExecuteArguments => (A?)ExecuteArguments; 
         public virtual E? TypedEvidence => (E?)Evidence;
@@ -35,9 +38,10 @@ namespace MBV.CMS.HX.Domain.Actions
         public abstract void Verify(object evidence);
         public abstract bool HasAutomaticVerification { get; }
 
-        public Action(S? subject)
+        public Action(S? subject, C constructorArguments)
         {
             Subject = subject;
+            ConstructorArguments = constructorArguments;
             Status = ActionStatusValues.Pending;
             ExecuteArguments = null;
             Evidence = null;

@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace MBV.CMS.HX.Domain.Actions
 {
-    public abstract class ManualVerificationAction<S, A, E> : Action<S, A, E> where S: IElement
+    public abstract class ManualVerificationAction<S, C, A, E> : Action<S, C, A, E> where S: IElement
     {
-        protected ManualVerificationAction(S? subject) 
-            : base(subject) { }
+        protected ManualVerificationAction(S? subject, C constructorArguments) 
+            : base(subject, constructorArguments) { }
 
         public abstract IEnumerable<object> InternalExecute(A arguments);
         public abstract void ValidateEvidence(E evidence);

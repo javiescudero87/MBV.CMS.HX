@@ -35,5 +35,6 @@ namespace MBV.CMS.HX.Domain.Catalog
         {
             RegisteredActions.Add(actionCatalogEntry);
         }
+
     }
 }

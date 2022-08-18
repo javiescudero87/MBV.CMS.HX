@@ -11,10 +11,12 @@ namespace MBV.CMS.HX.Domain.Actions
     {
         IElement Subject { get; }
         string Sumary { get; }
+        object ConstructorArguments { get; set; }
         object ExecuteArguments { get; set; }
         object Evidence { get; set; }
         ActionStatusValues Status { get; }
 
+        Type ConstructorArgumentsType { get; }
         Type ExecuteArgumentsType {get;}
         Type EvidenceType { get; }
 

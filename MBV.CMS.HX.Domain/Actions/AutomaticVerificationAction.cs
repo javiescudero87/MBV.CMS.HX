@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace MBV.CMS.HX.Domain.Actions
 {
-    public abstract class AutomaticVerificationAction<S, A, E> : Action<S, A, E> where S : IElement
+    public abstract class AutomaticVerificationAction<S, C, A, E> : Action<S, C, A, E> where S : IElement
     {
-        protected AutomaticVerificationAction(S? subject) : base(subject) { }
+        protected AutomaticVerificationAction(S? subject, C constructorArguments) : base(subject, constructorArguments) { }
         public abstract AutomaticActionExecuteResult<A, E> InternalExecute(A arguments);
         public override bool HasAutomaticVerification { get { return true; } }
 
@@ -20,7 +20,7 @@ namespace MBV.CMS.HX.Domain.Actions
                 Subject.UpdateState(c);
             ExecuteArguments = result.ExecuteArguments;
             Evidence = result.Evidence;
-            Status = ActionStatusValues.Executed;
+            Status = ActionStatusValues.Done;
         }
 
         public override void Verify(object evidence)

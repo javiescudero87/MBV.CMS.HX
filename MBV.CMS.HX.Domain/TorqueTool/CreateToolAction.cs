@@ -7,20 +7,16 @@ using System.Threading.Tasks;
 
 namespace MBV.CMS.HX.Domain.TorqueTool
 {
-    public class CreateToolAction : ManualVerificationAction<TorqueTool,CreateToolActionExecuteArguments, string>
+    public class CreateToolAction : ManualVerificationAction<TorqueTool, CreateToolActionConstructorArguments,CreateToolActionExecuteArguments, string>
     {
-        public CreateToolAction(string brand) : base(null)
-        {
-            Brand = brand;
-        }
+        public CreateToolAction(CreateToolActionConstructorArguments args) : base(null, args)
+        { }
 
-        public string Brand { get; protected set; }
-
-        public override string Sumary => $"Create and register in catalog a Torque tool branded {Brand}";
+        public override string Sumary => $"Create and register in catalog a Torque tool branded {TypeConstructorArguments.Brand}";
 
         public override IEnumerable<object> InternalExecute(CreateToolActionExecuteArguments data)
         {
-            Subject = new TorqueTool(data.ToolId, Brand, data.Location, null);
+            Subject = new TorqueTool(data.ToolId, TypeConstructorArguments.Brand, data.Location, null);
             return new object[] { };
         }
 

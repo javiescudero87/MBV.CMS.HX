@@ -16,5 +16,38 @@ namespace MBV.CMS.HX.Domain.Catalog
             Name = name;
             Action = action;
         }
+
+        public Type SubjectType 
+        { 
+            get
+            {
+                return Action.GenericTypeArguments[0];
+            } 
+        }
+
+        public Type CreateDto
+        {
+            get
+            {
+                return Action.GenericTypeArguments[1];
+            }
+        }
+
+        public Type ExecuteDto
+        {
+            get
+            {
+                return Action.GenericTypeArguments[2];
+            }
+        }
+
+        public Type VerifyDto
+        {
+            get
+            {
+                return Action.GenericTypeArguments[3];
+            }
+        }
+
     }
 }
