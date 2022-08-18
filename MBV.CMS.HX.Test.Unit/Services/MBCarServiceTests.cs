@@ -43,7 +43,7 @@ namespace MBV.CMS.HX.Test.Unit.Services
             var expectedName = "Sprinter Test";
 
             _mBCarRepositoryMock.Setup(r => r.FindAsync(It.IsAny<long>()))
-                .ReturnsAsync(new Domain.MBCar() { Id = expectedId, Name = expectedName });
+                .ReturnsAsync(new MBCar() { Id = expectedId, Name = expectedName });
 
             //Act
 

@@ -9,11 +9,12 @@ namespace MBV.CMS.HX.Domain.TorqueTool
 {
     public class AutomaticSetupToolAction : AutomaticVerificationAction<TorqueTool, VoidType, string>
     {
-        public virtual string Configuration { get; set; }
+        public virtual string Configuration { get; protected set; }
+        public virtual ITorqueToolApi API { get; protected set; }
 
         public override string Sumary => $"Setup Torque Tool {Subject} with new Configuration";
 
-        public AutomaticSetupToolAction(TorqueTool subject,string configuration) : base(subject)
+        public AutomaticSetupToolAction(TorqueTool subject,string configuration, ITorqueToolApi api) : base(subject)
         {
             Configuration = configuration;
         }
@@ -21,16 +22,15 @@ namespace MBV.CMS.HX.Domain.TorqueTool
         public override AutomaticActionExecuteResult<VoidType, string> InternalExecute(VoidType arguments)
         {
             //Aca llamo la api con la configuración, algo asi como:
-            //  API.SetConifguration(Subject.ToolId, Configuration);
-            //  var state = API.GetConfiguration(Subject.ToolId);
-            //  if (state != Configuration) throw new Exception();
-            //  Evidence = state;
+            API.SetToolConfiguration(TypedSubject.ToolId, Configuration);
+            var state = API.GetToolConfiguration(TypedSubject.ToolId);
+            if (state != Configuration) 
+                throw new Exception();
 
-            var evidence = "API RESULT";
             return new AutomaticActionExecuteResult<VoidType, string>(
                 new VoidType(),
                 new[] { new TorqueToolUpdateConfiguration(Configuration) },
-                evidence
+                state
                 );
         }
     }
