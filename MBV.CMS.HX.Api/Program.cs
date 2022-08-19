@@ -28,8 +28,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers(options =>
     {
-        options.Filters.Add(typeof(ModelStateValidateAttribute));
-        options.Filters.Add(typeof(ExceptionsAttribute));
+        options.Filters.Add(typeof(ModelStateValidateAttribute), 1);
+        options.Filters.Add(typeof(ExceptionsAttribute), 2);
+        options.Filters.Add(typeof(TransactionAttribute), 3);
         options.Filters.Add(new ProducesResponseTypeAttribute(typeof(ErrorDetailModel), StatusCodes.Status422UnprocessableEntity));
         options.Filters.Add(new ProducesResponseTypeAttribute(typeof(ErrorDetailModel), StatusCodes.Status500InternalServerError));
     })
@@ -155,8 +156,8 @@ builder.Services.Configure<OpenApiInfoConfigurationOptions>(builder.Configuratio
 
 builder.Services.AddTransient<IMBCarRepository, MBCarRepository>();
 builder.Services.AddTransient<IMBCarService, MBCarService>();
-builder.Services.AddTransient<ICreateActionToolRepository, CreateActionToolRepository>();
-builder.Services.AddTransient<ICreateActionToolService, CreateActionToolService>();
+builder.Services.AddTransient<IToolActionRepository, ToolActionRepository>();
+builder.Services.AddTransient<IToolActionService, ToolActionService>();
 
 #endregion
 

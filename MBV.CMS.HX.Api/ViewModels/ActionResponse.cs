@@ -2,7 +2,7 @@
 
 namespace MBV.CMS.HX.Api.ViewModels
 {
-    public class ActionResponse
+    public class IncorporationActionResponse
     {
         [JsonProperty("id")]
         public long Id { get; internal set; }

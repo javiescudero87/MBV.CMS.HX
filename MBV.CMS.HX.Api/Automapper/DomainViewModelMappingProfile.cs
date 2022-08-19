@@ -17,11 +17,12 @@ namespace MBV.CMS.HX.Api.Automapper
         {
             //Request            
             CreateMap<MBCarCreateRequest, MBCar>();
-            CreateMap<ActionCreateRequest, CreateToolAction>();
+            CreateMap<IncorporationActionRequest, IncorporationToolAction>();
+            CreateMap<ExecuteActionRequest, IncorporationToolAction>();
 
             //Response
             CreateMap<MBCar, MBCarResponse>();
-            CreateMap<CreateToolAction, ActionResponse>();
+            CreateMap<IncorporationToolAction, IncorporationActionResponse>();
             CreateMap<ActionStatusEnums, StatusResponse>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => (long)src))
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.GetDescription()));

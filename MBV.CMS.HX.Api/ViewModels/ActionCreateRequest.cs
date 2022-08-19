@@ -2,7 +2,7 @@
 
 namespace MBV.CMS.HX.Api.ViewModels
 {
-    public class ActionCreateRequest
+    public class IncorporationActionRequest
     {
 
         [JsonProperty("brand")]

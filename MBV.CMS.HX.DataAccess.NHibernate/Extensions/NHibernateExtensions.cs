@@ -2,6 +2,7 @@
 using FluentNHibernate.Cfg.Db;
 using MBV.CMS.HX.DataAccess.NHibernate.Mappings;
 using Microsoft.Extensions.DependencyInjection;
+using NHibernate;
 using NHibernate.Dialect;
 using NHibernate.Tool.hbm2ddl;
 
@@ -15,7 +16,7 @@ namespace MBV.CMS.HX.DataAccess.NHibernate.Extensions
                 .Mappings(mapper =>
                 {
                     mapper.FluentMappings.Add<MBCarMapping>();
-                    mapper.FluentMappings.Add<CreateToolActionMapping>();
+                    mapper.FluentMappings.Add<IncorporationToolActionMapping>();
                 })
                 .Database(MsSqlConfiguration.MsSql2012
                     .ConnectionString(connectionString))
@@ -35,6 +36,5 @@ namespace MBV.CMS.HX.DataAccess.NHibernate.Extensions
 
             return services;
         }
-
     }
 }

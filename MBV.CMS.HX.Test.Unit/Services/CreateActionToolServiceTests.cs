@@ -5,18 +5,18 @@ using Xunit;
 
 namespace MBV.CMS.HX.Test.Unit.Services
 {
-    public class CreateActionToolServiceTests
+    public class IncorporationToolActionServiceTests
     {
-        private readonly Mock<ICreateActionToolRepository> _createToolActionRepositoryMock;
+        private readonly Mock<IToolActionRepository> _iToolActionRepositoryMock;
 
-        public CreateActionToolServiceTests()
+        public IncorporationToolActionServiceTests()
         {
-            _createToolActionRepositoryMock = new Mock<ICreateActionToolRepository>();
+            _iToolActionRepositoryMock = new Mock<IToolActionRepository>();
         }
 
-        private CreateActionToolService CreateSut()
+        private ToolActionService CreateSut()
         {
-            return new CreateActionToolService(_createToolActionRepositoryMock.Object);
+            return new ToolActionService(_iToolActionRepositoryMock.Object);
         }
 
         [Fact]
@@ -27,20 +27,20 @@ namespace MBV.CMS.HX.Test.Unit.Services
             var expectedDescription = "Torque";
 
 
-            var expectedActionAdded = new Domain.CreateToolAction
+            var expectedActionAdded = new Domain.IncorporationToolAction
             {
                 Id = 1,
                 Brand = expectedBrand,
                 Description = expectedDescription
             };
 
-            _createToolActionRepositoryMock.Setup(r => r.SaveAsync(It.IsAny<Domain.CreateToolAction>()))
+            _iToolActionRepositoryMock.Setup(r => r.SaveAsync(It.IsAny<Domain.IncorporationToolAction>()))
                 .ReturnsAsync(expectedActionAdded);
 
             //Act
 
-            var retrievedToolAction = await CreateSut().CreateCreateToolActionAsync(
-                new Domain.CreateToolAction
+            var retrievedToolAction = await CreateSut().CreateToolActionAsync(
+                new Domain.IncorporationToolAction
                 {
                     Brand = expectedBrand,
                     Description = expectedDescription
@@ -64,7 +64,7 @@ namespace MBV.CMS.HX.Test.Unit.Services
             var description = "Torque";
             var expectedToolId = "TQ001";
             var expetedLocation = "Depósito de Herramientas";
-            var expectedActionAdded = new Domain.CreateToolAction
+            var expectedActionAdded = new Domain.IncorporationToolAction
             {
                 Id = 1,
                 Brand = brand,
@@ -72,13 +72,13 @@ namespace MBV.CMS.HX.Test.Unit.Services
             };
 
             //ACT
-            _createToolActionRepositoryMock.Setup(r => r.FindAsync(id)).ReturnsAsync(expectedActionAdded);
-            _createToolActionRepositoryMock.Setup(r => r.SaveAsync(expectedActionAdded));
-            await CreateSut().ExecuteAsync(id, expectedToolId, expetedLocation);
+            _iToolActionRepositoryMock.Setup(r => r.FindAsync(id)).ReturnsAsync(expectedActionAdded);
+            _iToolActionRepositoryMock.Setup(r => r.SaveAsync(expectedActionAdded));
+            //await CreateSut().ExecuteAsync(id, expectedToolId, expetedLocation);
 
             //ASSERT
-            _createToolActionRepositoryMock.Verify(v => v.FindAsync(id));
-            _createToolActionRepositoryMock.Verify(v => v.SaveAsync(It.IsAny<Domain.CreateToolAction>()));
+            _iToolActionRepositoryMock.Verify(v => v.FindAsync(id));
+            _iToolActionRepositoryMock.Verify(v => v.SaveAsync(It.IsAny<Domain.IncorporationToolAction>()));
         }
 
         [Fact]
@@ -91,7 +91,7 @@ namespace MBV.CMS.HX.Test.Unit.Services
             var brand = "Bosch";
             var description = "Torque";
             var expectedEvidence = "evidence";
-            var expectedActionAdded = new Domain.CreateToolAction
+            var expectedActionAdded = new Domain.IncorporationToolAction
             {
                 Id = 1,
                 Brand = brand,
@@ -101,13 +101,13 @@ namespace MBV.CMS.HX.Test.Unit.Services
             };
 
             //ACT
-            _createToolActionRepositoryMock.Setup(r => r.FindAsync(id)).ReturnsAsync(expectedActionAdded);
-            _createToolActionRepositoryMock.Setup(r => r.SaveAsync(expectedActionAdded));
+            _iToolActionRepositoryMock.Setup(r => r.FindAsync(id)).ReturnsAsync(expectedActionAdded);
+            _iToolActionRepositoryMock.Setup(r => r.SaveAsync(expectedActionAdded));
             await CreateSut().VerifyAsync(id, expectedEvidence);
 
             //ASSERT
-            _createToolActionRepositoryMock.Verify(v => v.FindAsync(id));
-            _createToolActionRepositoryMock.Verify(v => v.SaveAsync(It.IsAny<Domain.CreateToolAction>()));
+            _iToolActionRepositoryMock.Verify(v => v.FindAsync(id));
+            _iToolActionRepositoryMock.Verify(v => v.SaveAsync(It.IsAny<Domain.IncorporationToolAction>()));
         }
 
     }

@@ -1,6 +1,6 @@
 namespace MBV.CMS.HX.DataAccess.Interface
 {
-    public interface IGenericRepository<T> : IDisposable where T : class
+    public interface IGenericRepository<T> where T : class
     {
 
         /// <summary>
@@ -16,18 +16,6 @@ namespace MBV.CMS.HX.DataAccess.Interface
         /// <param name="TEntity"></param>
         /// <returns></returns>
         public Task<T> SaveAsync(T TEntity);
-
-    }
-
-    /// <summary>
-    /// Interface to support non-typed entities adding to a repository
-    /// </summary>
-    public interface IGenericRepository : IDisposable
-    {
-        void BeginTransaction();
-        Task CommitAsync();
-        Task RollbackAsync();
-        void CloseTransaction();
 
     }
 

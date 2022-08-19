@@ -20,7 +20,7 @@ namespace MBV.CMS.HX.Api.Controllers
 
         private readonly ILogger<ActionsController> _logger;
         private readonly IMapper _mapper;
-        private readonly ICreateActionToolService _actionService;
+        private readonly IToolActionService _actionService;
 
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace MBV.CMS.HX.Api.Controllers
         /// <param name="mBCarService"></param>
         public ActionsController(ILogger<ActionsController> logger
             , IMapper mapper
-            , ICreateActionToolService actionService)
+            , IToolActionService actionService)
         {
             _logger = logger;
             _mapper = mapper;
@@ -44,17 +44,17 @@ namespace MBV.CMS.HX.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        [SwaggerOperation(Summary = "Adds a new action.", Tags = new[] { "Actions" })]
-        [ProducesResponseType(typeof(ActionResponse), StatusCodes.Status201Created)]
+        [SwaggerOperation(Summary = "Adds a new incorporation action.", Tags = new[] { "Actions" })]
+        [ProducesResponseType(typeof(IncorporationActionResponse), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(ErrorDetailModel), StatusCodes.Status400BadRequest)]
         [Produces(MediaTypeNames.Application.Json, "application/problem+json")]
-        public async Task<IActionResult> CreateActionAsync([FromBody] ActionCreateRequest actionCreateRequest)
+        public async Task<IActionResult> IncorporationActionAsync([FromBody] IncorporationActionRequest incorporationActionRequest)
         {
-            _logger.LogDebug("Entering to Actions controller -> CreateActionAsync");
+            _logger.LogDebug("Entering to Actions controller -> IncorporationActionAsync");
 
-            var domainAction = _mapper.Map<Domain.CreateToolAction>(actionCreateRequest);
-            var domainActionAdded = await _actionService.CreateCreateToolActionAsync(domainAction);
-            return Created($"{RouteRoot}/{domainActionAdded.Id}", _mapper.Map<ActionResponse>(domainActionAdded));
+            var domainAction = _mapper.Map<Domain.IncorporationToolAction>(incorporationActionRequest);
+            var domainActionAdded = await _actionService.CreateToolActionAsync<Domain.IncorporationToolAction>(domainAction);
+            return Created($"{RouteRoot}/{domainActionAdded.Id}", _mapper.Map<IncorporationActionResponse>(domainActionAdded));
         }
 
         /// <summary>
@@ -66,10 +66,12 @@ namespace MBV.CMS.HX.Api.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorDetailModel), StatusCodes.Status400BadRequest)]
         [Produces(MediaTypeNames.Application.Json, "application/problem+json")]
-        public async Task<IActionResult> ExecuteActionAsync([FromRoute] long id, [FromBody] ExecuteActionRequest executeActionRequest)
+        public async Task<IActionResult> IncorporationActionAsync([FromRoute] long id, [FromBody] ExecuteActionRequest executeActionRequest)
         {
-            _logger.LogDebug("Entering to Actions controller -> ExecuteActionAsync");
-            await _actionService.ExecuteAsync(id, executeActionRequest.ToolId, executeActionRequest.Location);
+            _logger.LogDebug("Entering to Actions controller -> IncorporationActionAsync");
+            var domainAction = _mapper.Map<Domain.IncorporationToolAction>(executeActionRequest);
+            domainAction.Id = id;
+            await _actionService.ExecuteAsync(domainAction);
             return Ok();
         }
 
@@ -77,7 +79,7 @@ namespace MBV.CMS.HX.Api.Controllers
         /// 
         /// </summary>
         /// <returns></returns>
-        [HttpPost("{id}/")]
+        [HttpPost("{id}/verify")]
         [SwaggerOperation(Summary = "Verifies and action tool.", Tags = new[] { "Actions" })]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorDetailModel), StatusCodes.Status400BadRequest)]

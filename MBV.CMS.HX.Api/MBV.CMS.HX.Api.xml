@@ -9,7 +9,7 @@
             
             </summary>
         </member>
-        <member name="M:MBV.CMS.HX.Api.Automapper.DomainViewModelMappingProfile.#ctor">
+        <member name="M:MBV.CMS.HX.Api.Automapper.DomainViewModelMappingProfile.#ctor(MBV.CMS.HX.Service.Interface.IMBCarService)">
             <summary>
             
             </summary>
@@ -42,7 +42,7 @@
             
             </summary>
         </member>
-        <member name="M:MBV.CMS.HX.Api.Controllers.ActionsController.#ctor(Microsoft.Extensions.Logging.ILogger{MBV.CMS.HX.Api.Controllers.ActionsController},AutoMapper.IMapper,MBV.CMS.HX.Service.Interface.ICreateActionToolService)">
+        <member name="M:MBV.CMS.HX.Api.Controllers.ActionsController.#ctor(Microsoft.Extensions.Logging.ILogger{MBV.CMS.HX.Api.Controllers.ActionsController},AutoMapper.IMapper,MBV.CMS.HX.Service.Interface.IToolActionService)">
             <summary>
             
             </summary>
@@ -50,13 +50,13 @@
             <param name="mapper"></param>
             <param name="mBCarService"></param>
         </member>
-        <member name="M:MBV.CMS.HX.Api.Controllers.ActionsController.CreateActionAsync(MBV.CMS.HX.Api.ViewModels.ActionCreateRequest)">
+        <member name="M:MBV.CMS.HX.Api.Controllers.ActionsController.IncorporationActionAsync(MBV.CMS.HX.Api.ViewModels.IncorporationActionRequest)">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="M:MBV.CMS.HX.Api.Controllers.ActionsController.ExecuteActionAsync(System.Int64,MBV.CMS.HX.Api.ViewModels.ExecuteActionRequest)">
+        <member name="M:MBV.CMS.HX.Api.Controllers.ActionsController.IncorporationActionAsync(System.Int64,MBV.CMS.HX.Api.ViewModels.ExecuteActionRequest)">
             <summary>
             
             </summary>
@@ -124,6 +124,29 @@
         <member name="M:MBV.CMS.HX.Api.Filters.ModelStateValidateAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
             <summary>
             OnActionExecuting
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:MBV.CMS.HX.Api.Filters.TransactionAttribute">
+            <summary>
+            TransactionAttribute
+            </summary>
+        </member>
+        <member name="M:MBV.CMS.HX.Api.Filters.TransactionAttribute.#ctor(NHibernate.ISession)">
+            <summary>
+            TransactionAttribute
+            </summary>
+            <param name="session"></param>
+        </member>
+        <member name="M:MBV.CMS.HX.Api.Filters.TransactionAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            OnActionExecuting
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:MBV.CMS.HX.Api.Filters.TransactionAttribute.OnActionExecuted(Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext)">
+            <summary>
+            OnActionExecuted
             </summary>
             <param name="context"></param>
         </member>

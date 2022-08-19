@@ -75,7 +75,7 @@ namespace MBV.CMS.HX.Api.Controllers
 
             var domainMBCar = _mapper.Map<Domain.MBCar>(mBCarCreateRequest);
             var domainMBCarAdded = await _mBCarService.CreateMBCarAsync(domainMBCar);
-
+            //throw new Exception("XXX");
             return Created($"{RouteRoot}/{domainMBCarAdded.Id}", _mapper.Map<MBCarResponse>(domainMBCarAdded));
         }
 

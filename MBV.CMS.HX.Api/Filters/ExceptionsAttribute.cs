@@ -35,6 +35,7 @@ namespace MBV.CMS.HX.Api.Filters
             SetExceptionType(context);
         }
 
+
         private void SetExceptionType(ExceptionContext context)
         {
             var exceptionType = context.Exception.GetType();
@@ -83,5 +84,4 @@ namespace MBV.CMS.HX.Api.Filters
             }
         }
     }
-
 }

@@ -45,13 +45,21 @@ namespace MBV.CMS.HX.Test.Integration
 
             //Assert
             Assert.Equal(HttpStatusCode.Created, response.StatusCode);
-            var actionResponse = await response.Content.ReadAsAsync<ActionResponse>();
+            var actionResponse = await response.Content.ReadAsAsync<IncorporationActionResponse>();
             Assert.True(actionResponse.Id > 0);
             Assert.Null(actionResponse.ToolId);
             Assert.Equal(expectedBrand, actionResponse.Brand);
             Assert.Equal(expectedDescription, actionResponse.Description);
             Assert.NotNull(actionResponse.Status);
             Assert.Equal(actionResponse.Status.Id, (long)ActionStatusEnums.Planificada);
+
+            var storedIncorporationToolAction = await _server.HttpServer.Session.GetAsync<IncorporationToolAction>(actionResponse.Id);
+            Assert.True(storedIncorporationToolAction.Id > 0);
+            Assert.Null(storedIncorporationToolAction.ToolId);
+            Assert.Equal(expectedBrand, storedIncorporationToolAction.Brand);
+            Assert.Equal(expectedDescription, storedIncorporationToolAction.Description);
+            Assert.Equal(ActionStatusEnums.Planificada, storedIncorporationToolAction.Status);
+
         }
 
         [Fact]
@@ -60,7 +68,9 @@ namespace MBV.CMS.HX.Test.Integration
             //ARRANGE
             var toolId = "TQ001";
             var location = "Depósito de Herramientas";
-            var id = AddCreateToolActionDb("Torque", "Bosch");
+            var description = "Torque";
+            var brand = "Bosch";
+            var id = AddCreateToolActionDb(description, brand);
             var server = _server.HttpServer.TestServer;
             var client = server?.CreateClient();
 
@@ -76,12 +86,18 @@ namespace MBV.CMS.HX.Test.Integration
 
             //ASSERT
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            var storedIncorporationToolAction = await _server.HttpServer.Session.GetAsync<IncorporationToolAction>(id);
+            Assert.Equal(brand, storedIncorporationToolAction.Brand);
+            Assert.Equal(description, storedIncorporationToolAction.Description);
+            Assert.Equal(toolId, storedIncorporationToolAction.ToolId);
+            Assert.Equal(location, storedIncorporationToolAction.Location);
+            Assert.Equal(ActionStatusEnums.Ejecutada, storedIncorporationToolAction.Status);
         }
 
         private long AddCreateToolActionDb(string description, string brand)
         {
             return (long)_server.HttpServer.Session.Save(
-                new CreateToolAction { 
+                new IncorporationToolAction { 
                     Description = description,
                     Brand = brand,
                     Status = ActionStatusEnums.Planificada
