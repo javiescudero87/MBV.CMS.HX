@@ -30,7 +30,7 @@ namespace MBV.CMS.HX.DataAccess.NHibernate.Extensions
             services.AddScoped(session => sessionFactory.OpenSession());
 
             //Uncomment to create DB schema from entities
-            //    new SchemaExport(fluentConfig).Execute(useStdOut: false, execute: true, justDrop: false, connection: sessionFactory.OpenSession().Connection, exportOutput: Console.Out);
+                new SchemaExport(fluentConfig).Execute(useStdOut: false, execute: true, justDrop: false, connection: sessionFactory.OpenSession().Connection, exportOutput: Console.Out);
 
             return services;
         }

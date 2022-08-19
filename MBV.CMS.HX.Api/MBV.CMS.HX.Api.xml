@@ -37,6 +37,26 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:MBV.CMS.HX.Api.Controllers.ActionsController.#ctor(Microsoft.Extensions.Logging.ILogger{MBV.CMS.HX.Domain.Actions.IAction},AutoMapper.IMapper,MBV.CMS.HX.Service.Interface.IMBCarService)">
+            <summary>
+            
+            </summary>
+            <param name="logger"></param>
+            <param name="mapper"></param>
+            <param name="mBCarService"></param>
+        </member>
+        <member name="M:MBV.CMS.HX.Api.Controllers.ActionsController.CreateMBCarAsync(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MBV.CMS.HX.Api.Controllers.CatalogControllers.Actions">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:MBV.CMS.HX.Api.Controllers.MBCarsController">
             <summary>
             

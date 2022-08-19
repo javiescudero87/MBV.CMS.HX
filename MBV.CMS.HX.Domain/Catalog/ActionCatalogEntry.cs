@@ -21,7 +21,7 @@ namespace MBV.CMS.HX.Domain.Catalog
         { 
             get
             {
-                return Action.GenericTypeArguments[0];
+                return GetGenericType(Action).GenericTypeArguments[0];
             } 
         }
 
@@ -29,7 +29,7 @@ namespace MBV.CMS.HX.Domain.Catalog
         {
             get
             {
-                return Action.GenericTypeArguments[1];
+                return GetGenericType(Action).GenericTypeArguments[1];
             }
         }
 
@@ -37,7 +37,7 @@ namespace MBV.CMS.HX.Domain.Catalog
         {
             get
             {
-                return Action.GenericTypeArguments[2];
+                return GetGenericType(Action).GenericTypeArguments[2];
             }
         }
 
@@ -45,9 +45,15 @@ namespace MBV.CMS.HX.Domain.Catalog
         {
             get
             {
-                return Action.GenericTypeArguments[3];
+                return GetGenericType(Action).GenericTypeArguments[3];
             }
         }
 
+        private Type GetGenericType(Type action)
+        {
+            if (action.IsGenericType)
+                return action;
+            return GetGenericType(action.BaseType);
+        }
     }
 }

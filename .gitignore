@@ -12,6 +12,9 @@
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
+#Serilog
+../Logs/*.*
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
@@ -210,3 +213,4 @@ FakesAssemblies/
 # Visual Studio 6 workspace options file
 *.opt
 /Logs
+/MBV.CMS.HX.Api/Logs
